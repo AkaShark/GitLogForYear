@@ -2,10 +2,16 @@ package com.git.log.feature.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.git.log.common.components.TypewriterText
+import com.git.log.feature.home.viewmodel.HomeViewModel
 
 private val helloWorld = listOf(
     """print("Hello World")""", // Python
@@ -36,14 +42,32 @@ private val helloWorld = listOf(
 )
 
 @Composable
-fun Home(
-    onOpenReport: () -> Unit = {},
-) {
+fun Home() {
+    val viewModel = remember { HomeViewModel() }
+
     Column(
         modifier = Modifier
             .fillMaxWidth(),
         horizontalAlignment = Alignment.Start
     ) {
-        TypewriterText(helloWorld)
+        TypewriterText(
+            helloWorld,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 20.dp)
+                .height(35.dp)
+        )
+        MainActionButtons(
+            onClick = {
+                print("测试")
+            },
+            contentColor = Color(0xFF637172).copy(alpha = 0.2f)
+
+        )
+        DataSourceDesc(
+            modifier = Modifier
+                .padding(top = 20.dp),
+            onClickItem = { viewModel.onDataSourceClicked(it) }
+        )
     }
 }
