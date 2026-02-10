@@ -66,6 +66,7 @@ androidTarget {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation(project(":common:git"))
         }
     }
 }
