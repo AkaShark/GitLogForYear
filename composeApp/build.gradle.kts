@@ -29,16 +29,16 @@ androidTarget {
     
     jvm()
     
-    js {
-        browser()
-        binaries.executable()
-    }
+//    js {
+//        browser()
+//        binaries.executable()
+//    }
     
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmJs {
+//        browser()
+//        binaries.executable()
+//    }
     
     sourceSets {
         androidMain.dependencies {
@@ -55,6 +55,7 @@ androidTarget {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(projects.shared)
+            implementation(libs.krouter)
             implementation(project(":feature:home"))
             implementation(project(":common:ui"))
             implementation(project(":common:tool"))

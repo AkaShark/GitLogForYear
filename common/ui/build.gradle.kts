@@ -8,8 +8,8 @@ kotlin {
     jvm("desktop")
     iosArm64()
     iosSimulatorArm64()
-    js(IR) { browser() }
-    wasmJs { browser() }
+//    js(IR) { browser() }
+//    wasmJs { browser() }
 
     sourceSets {
         commonMain.dependencies {
