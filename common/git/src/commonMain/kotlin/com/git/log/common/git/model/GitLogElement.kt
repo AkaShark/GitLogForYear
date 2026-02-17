@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 data class GitLogElement(
     val hash: String,
     val email: String,
+    val name: String,
     val date: String,
     val note: String
 )

@@ -1,4 +1,4 @@
-package com.git.log.common.git.model
+package com.git.log.common.git.filter
 
 import kotlinx.serialization.Serializable
 
