@@ -6,8 +6,8 @@ plugins {
 
 kotlin {
     jvm("desktop")
-    iosArm64()
-    iosSimulatorArm64()
+//    iosArm64()
+//    iosSimulatorArm64()
 //    js(IR) { browser() }
 //    wasmJs { browser() }
 

@@ -6,8 +6,8 @@ plugins {
 
 kotlin {
     jvm("desktop")
-    iosArm64()
-    iosSimulatorArm64()
+//    iosArm64()
+//    iosSimulatorArm64()
 //    js(IR) { browser() }
 //    wasmJs { browser() }
 
@@ -18,6 +18,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(project(":common:tool"))
+            implementation(project(":common:git"))
         }
 
     }
