@@ -59,6 +59,7 @@ kotlin {
             implementation(project(":feature:home"))
             implementation(project(":common:ui"))
             implementation(project(":common:tool"))
+            implementation(project(":feature:common"))
 
         }
 //        commonTest.dependencies {

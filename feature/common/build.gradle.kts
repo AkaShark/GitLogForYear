@@ -16,7 +16,6 @@ kotlin {
             implementation(compose.components.resources)
             implementation(project(":common:ui"))
             implementation(project(":common:tool"))
-            implementation(project(":feature:common"))
             implementation(project(":common:git"))
         }
 

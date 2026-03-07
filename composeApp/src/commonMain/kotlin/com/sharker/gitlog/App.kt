@@ -1,31 +1,34 @@
 package com.sharker.gitlog
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import AppScreen
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import com.git.log.common.components.AnimatedGradientBackground
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import com.git.log.feature.common.viewModel.NavigatorViewModel
 import com.git.log.feature.home.Home
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun App() {
-    MaterialTheme(
-        colorScheme = darkColorScheme()
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            AnimatedGradientBackground(
-                modifier = Modifier,
-                content = {
-                   Home()
+    val viewModel = remember { NavigatorViewModel() }
+    val screen by viewModel.currentScreen.collectAsState()
+
+    when (val current = screen) {
+        is AppScreen.Home -> {
+            Home(
+                onStartAnalysis = { sourcePackage ->
+                    viewModel.startAnalysis(sourcePackage)
                 }
             )
         }
+
+        is AppScreen.Analysis -> {
+
+        }
+
+        is AppScreen.Result -> {
+
+        }
     }
+
 }

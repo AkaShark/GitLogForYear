@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +24,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.git.log.common.components.AnimatedGradientBackground
 import com.git.log.common.components.TypewriterText
+import com.git.log.common.git.model.SourcePackage
 import com.git.log.common.tool.AppColors
 import com.git.log.feature.home.viewmodel.HomeViewModel
 
@@ -54,12 +59,29 @@ private val helloWorld = listOf(
 )
 
 @Composable
-fun Home() {
-    HomePage()
+fun Home(
+    onStartAnalysis: (SourcePackage) -> Unit = { _ -> }
+) {
+    var showMainSheet by remember { mutableStateOf(false) }
+
+    AnimatedGradientBackground(
+        modifier = Modifier,
+        content = {
+            HomePage(
+                onOpenConfig = { showMainSheet = true }
+            )
+        }
+    )
+
+    if (showMainSheet) {
+
+    }
 }
 
 @Composable
-fun HomePage() {
+fun HomePage(
+    onOpenConfig: () -> Unit = {}
+) {
     Column (
         modifier = Modifier
             .fillMaxSize(),
@@ -75,7 +97,7 @@ fun HomePage() {
                 .padding(start = 60.dp),
             contentAlignment = Alignment.CenterStart
         ) {
-            HomeContent()
+            HomeContent(onOpenConfig = onOpenConfig)
         }
         // tail
         HomeFooter()
@@ -94,7 +116,9 @@ fun HomeTitle() {
 }
 
 @Composable
-fun HomeContent() {
+fun HomeContent(
+    onOpenConfig: () -> Unit = {}
+) {
     val viewModel = remember { HomeViewModel() }
 
     Column(
@@ -111,7 +135,7 @@ fun HomeContent() {
         )
         MainActionButtons(
             onClick = {
-                print("测试")
+                onOpenConfig()
             },
             contentColor = Color(0xFF637172).copy(alpha = 0.2f)
 
