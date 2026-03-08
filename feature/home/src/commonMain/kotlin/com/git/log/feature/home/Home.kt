@@ -74,7 +74,13 @@ fun Home(
     )
 
     if (showMainSheet) {
-
+        MainSheetDialog(
+            onDismiss = { showMainSheet = false },
+            onConfirm = { sourcePackage ->
+                showMainSheet = false
+                onStartAnalysis(sourcePackage)
+            }
+        )
     }
 }
 
